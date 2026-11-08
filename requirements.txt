@@ -1,0 +1,24 @@
+# data
+numpy
+pandas
+
+# plots
+matplotlib
+seaborn
+
+# classic ML
+scikit-learn
+
+# boosting
+catboost
+lightgbm
+xgboost
+
+# DL
+torch
+
+# config
+omegaconf
+
+# notebook
+ipykernel
