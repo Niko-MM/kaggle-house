@@ -1,17 +1,13 @@
 import numpy as np
 from sklearn.base import clone
 from sklearn.metrics import root_mean_squared_error
-from sklearn.pipeline import make_pipeline
-from sklearn.preprocessing import StandardScaler
 
 
 def run(df, cfg, features, cv_splitter, model):
-    """Линия учится на log1p(цены).
+    """На каждом фолде своя копия модели учится на log1p(цены).
+    expm1 возвращает предсказание в доллары.
+      RMSE логарифма к долларам не прикладывают"""
 
-    log1p и expm1 — пара: второе отменяет первое.
-    RMSE в долларах можно сравнивать с прошлыми прогонами.
-    RMSE логарифма — другая единица, к долларам её не прикладывают.
-    """
     fold_dollar_rmses = []
     fold_log_rmses = []
     model_name = model.__class__.__name__
@@ -22,7 +18,7 @@ def run(df, cfg, features, cv_splitter, model):
     for fold, (train_idx, val_idx) in enumerate(cv_splitter.split(X, y)):
         X_train, y_train = X.iloc[train_idx], y.iloc[train_idx]
         X_val, y_val = X.iloc[val_idx], y.iloc[val_idx]
-
+        # Цену дома в логарифм
         y_train_log = np.log1p(y_train)
         y_val_log = np.log1p(y_val)
 

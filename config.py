@@ -6,7 +6,7 @@ ROOT = Path(__file__).parent
 
 config = {
     "general": {
-        "experiment_name": "baseline",
+        "experiment_name": "LinearRegression",
         "seed": 42,
     },
     "paths": {
@@ -16,10 +16,6 @@ config = {
     "columns": {
         "target": "SalePrice",
         "id": "Id",
-    },
-    "features": {
-        "drop": ["PassengerId", "Ticket", "Cabin", "Name"],
-        "categorical": ["Sex", "Embarked", "Title"],
     },
     "split": {"n_splits": 5},
     "mlp": {

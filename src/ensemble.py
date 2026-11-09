@@ -5,7 +5,7 @@ from sklearn.linear_model import LinearRegression
 
 
 def ensemble(cfg):
-    """Линия и два бустинга. Голос у каждого равный, предсказание — среднее."""
+    """Линия и два бустинга"""
     linal = LinearRegression()
 
     catboost = CatBoostRegressor(

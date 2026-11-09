@@ -14,7 +14,6 @@ def log_experiment(
     log_path_txt: str = "outputs/results.txt",
 ):
     """Запись логов в csv, txt"""
-    # заемтки для csv и txt файла
     row = {
         "experiment_name": experiment_name,
         "model_name": model_name,
@@ -28,14 +27,11 @@ def log_experiment(
 
     path_to_file = Path(log_path_csv)
     file_exists = path_to_file.exists()
-
     df_row.to_csv(
         path_to_file, mode="a", index=False, header=not file_exists, encoding="utf-8"
     )
-
     print(f"Результаты эксперимента '{experiment_name}' успешно сохранены в CSV")
 
-    # заметки для txt файла
     features_str = ", ".join(features)
 
     txt_line = (

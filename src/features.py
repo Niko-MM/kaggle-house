@@ -1,8 +1,8 @@
 import pandas as pd
 
 
-def build_features(df_train: pd.DataFrame, df_test: pd.DataFrame, cfg):
-    """Создаем фичи"""
+def select_columns(df_train: pd.DataFrame, df_test: pd.DataFrame, cfg):
+    """Нарезаем фичи"""
     features = [
         "GrLivArea",
         "OverallQual",
@@ -30,7 +30,8 @@ def build_features(df_train: pd.DataFrame, df_test: pd.DataFrame, cfg):
         "MSSubClass",
         "Neighborhood",
     ]
+    # Добавляем "GarageType" для одноразового заполнения пропусков
     df_train = df_train[features + [cfg.columns.target] + ["GarageType"]].copy()
     df_test = df_test[features + ["GarageType"]].copy()
 
-    return df_train, df_test, features
+    return df_train, df_test
